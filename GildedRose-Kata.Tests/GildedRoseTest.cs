@@ -7,6 +7,7 @@ namespace GildedRose_Kata.Tests
     public class GildedRoseTest
     {
         [TestCase("Axe", 23, 17)]
+        //[TestCase("Aged Brie", 23, 21)]
         public void Should(string name, int sellIn, int quality)
         {
             // GIVEN
