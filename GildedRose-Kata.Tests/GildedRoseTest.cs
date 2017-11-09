@@ -6,9 +6,9 @@ namespace GildedRose_Kata.Tests
 {
     public class GildedRoseTest
     {
-        [TestCase("Axe", 23, 17)]
-        //[TestCase("Aged Brie", 23, 21)]
-        public void Should(string name, int sellIn, int quality)
+        [TestCase("Axe", 23, 17, 22, 16)]
+        [TestCase("Aged Brie", 23, 21, 22, 22)]
+        public void Should(string name, int sellIn, int quality, int expectedSellIn, int expectedQuality)
         {
             // GIVEN
             Item axe = new Item()
@@ -24,8 +24,8 @@ namespace GildedRose_Kata.Tests
             ap.UpdateQuality();
 
             // THEN
-            Check.That(axe.SellIn).IsEqualTo(22);
-            Check.That(axe.Quality).IsEqualTo(16);
+            Check.That(axe.SellIn).IsEqualTo(expectedSellIn);
+            Check.That(axe.Quality).IsEqualTo(expectedQuality);
         }
     }
 }
