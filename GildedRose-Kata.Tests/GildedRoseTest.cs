@@ -10,6 +10,7 @@ namespace GildedRose_Kata.Tests
         [TestCase("Aged Brie", 23, 21, 22, 22)]
         [TestCase("Backstage passes to a TAFKAL80ETC concert", 23, 21, 22, 22)]
         [TestCase("Backstage passes to a TAFKAL80ETC concert", 10, 21, 9, 23)]
+        [TestCase("Backstage passes to a TAFKAL80ETC concert", 5, 21, 4, 24)]
         public void Should(string name, int sellIn, int quality, int expectedSellIn, int expectedQuality)
         {
             // GIVEN
