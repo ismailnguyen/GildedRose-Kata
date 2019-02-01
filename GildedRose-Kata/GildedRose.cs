@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GildedRose_Kata
 {
@@ -19,23 +20,13 @@ namespace GildedRose_Kata
         {
             for (var i = 0; i < _items.Count; i++)
             {
-                if (_items[i].Name == BackstageItemName && _items[i].Quality < 50)
+                if (_items[i].Name == BackstageItemName)
                 {
-                    _items[i].RaiseQuality();
-
-                    if (_items[i].SellIn < 11)
-                    {
-                        _items[i].RaiseQuality();
-                    }
-
-                    if (_items[i].SellIn < 6)
-                    {
-                        _items[i].RaiseQuality();
-                    }
+                    UpdateQualityBackstage(_items[i]);
                 }
-                else if (_items[i].Name == AgedBrieItemName && _items[i].Quality < 50)
+                else if (_items[i].Name == AgedBrieItemName)
                 {
-                    _items[i].RaiseQuality();
+                    UpdateQualityAgedBrie(_items[i]);
                 }
                 else if (_items[i].Quality > 0 && _items[i].Name != SulfurasItemName)
                 {
@@ -49,8 +40,9 @@ namespace GildedRose_Kata
 
                 if (_items[i].SellIn < 0)
                 {
-                    if (_items[i].Name == AgedBrieItemName && _items[i].Quality < 50)
+                    if (_items[i].Name == AgedBrieItemName)
                     {
+                        if (_items[i].Quality < 50 && _items[i].SellIn < 0)
                         _items[i].RaiseQuality();
                     }
                     else
@@ -66,6 +58,33 @@ namespace GildedRose_Kata
                     }
                 }
             }
+        }
+
+        private void UpdateQualityAgedBrie(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.RaiseQuality();
+            }
+        }
+
+        private void UpdateQualityBackstage(Item item)
+        {
+            if (item.Quality >= 50)
+                return;
+
+            item.RaiseQuality();
+
+            if (item.SellIn < 11)
+            {
+                item.RaiseQuality();
+            }
+
+            if (item.SellIn < 6)
+            {
+                item.RaiseQuality();
+            }
+
         }
     }
 }
