@@ -15,34 +15,30 @@
 
         public void UpdateQuality()
         {
-            if (_item.Name == BackstageItemName)
+            switch (_item.Name)
             {
-                UpdateBackstageQuality();
-            }
-            else if (_item.Name == AgedBrieItemName)
-            {
-                UpdateAgedBrieQuality();
-            }
-            else if (_item.Quality > 0 && _item.Name != SulfurasItemName)
-            {
-                UpdateNormalItemQuality();
-            }
-
-            if (_item.Name != SulfurasItemName && _item.Name != BackstageItemName  && _item.Name != AgedBrieItemName)
-            {
-                _item.ReduceSellIn();
-            }
-
-            if (_item.SellIn < 0 && _item.Quality > 0
-                && _item.Name != AgedBrieItemName &&  _item.Name != BackstageItemName && _item.Name != SulfurasItemName)
-            {
-                _item.ReduceQuality();
+                case BackstageItemName:
+                    UpdateBackstageQuality();
+                    break;
+                case AgedBrieItemName:
+                    UpdateAgedBrieQuality();
+                    break;
+                default:
+                    UpdateNormalItemQuality();
+                    break;
             }
         }
 
         private void UpdateNormalItemQuality()
         {
-            if (_item.Quality > 0 && _item.Name != SulfurasItemName)
+            if (_item.Quality > 0)
+            {
+                _item.ReduceQuality();
+            }
+
+            _item.ReduceSellIn();
+
+            if (_item.SellIn < 0)
             {
                 _item.ReduceQuality();
             }
@@ -57,8 +53,10 @@
 
             _item.ReduceSellIn();
 
-            if (_item.Quality < 50 && _item.SellIn < 0)
+            if (_item.SellIn < 0)
+            {
                 _item.RaiseQuality();
+            }
         }
 
         private void UpdateBackstageQuality()
