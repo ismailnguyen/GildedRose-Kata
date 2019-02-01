@@ -6,6 +6,10 @@ namespace GildedRose_Kata
     {
         private readonly IList<Item> _items;
 
+        private const string SulfurasItemName = "Sulfuras, Hand of Ragnaros";
+        private const string BackstageItemName = "Backstage passes to a TAFKAL80ETC concert";
+        private const string AgedBrieItemName = "Aged Brie";
+
         public GildedRose(IList<Item> items)
         {
             _items = items;
@@ -15,11 +19,11 @@ namespace GildedRose_Kata
         {
             for (var i = 0; i < _items.Count; i++)
             {
-                if (_items[i].Name != "Aged Brie" && _items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (_items[i].Name != AgedBrieItemName && _items[i].Name != BackstageItemName)
                 {
                     if (_items[i].Quality > 0)
                     {
-                        if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
+                        if (_items[i].Name != SulfurasItemName)
                         {
                             _items[i].Quality--;
                         }
@@ -31,7 +35,7 @@ namespace GildedRose_Kata
                     {
                         _items[i].Quality++;
 
-                        if (_items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (_items[i].Name == BackstageItemName)
                         {
                             if (_items[i].SellIn < 11)
                             {
@@ -52,20 +56,20 @@ namespace GildedRose_Kata
                     }
                 }
 
-                if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
+                if (_items[i].Name != SulfurasItemName)
                 {
                     _items[i].SellIn--;
                 }
 
                 if (_items[i].SellIn < 0)
                 {
-                    if (_items[i].Name != "Aged Brie")
+                    if (_items[i].Name != AgedBrieItemName)
                     {
-                        if (_items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (_items[i].Name != BackstageItemName)
                         {
                             if (_items[i].Quality > 0)
                             {
-                                if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
+                                if (_items[i].Name != SulfurasItemName)
                                 {
                                     _items[i].Quality--;
                                 }
