@@ -1,57 +1,43 @@
-﻿using System;
-
-namespace GildedRose_Kata
+﻿namespace GildedRose_Kata
 {
-    public class Item
+    public abstract class Item
     {
         public string Name { get; private set; }
-
         public int SellIn { get; private set; }
-
         public int Quality { get; private set; }
 
-        public Item(string name, int sellIn, int quality)
+        protected Item(string name, int sellIn, int quality)
         {
             Name = name;
             SellIn = sellIn;
             Quality = quality;
         }
 
-        public void UpdateQuality()
-        {
-            if (Quality > 0)
-            {
-                ReduceQuality();
-            }
+        public abstract void UpdateQuality();
 
-            ReduceSellIn();
-
-            if (SellIn < 0)
-            {
-                ReduceQuality();
-            }
-        }
-
-        public void ReduceQuality()
+        protected void ReduceQuality()
         {
             Quality--;
         }
 
-        public void RaiseQuality()
+        protected void RaiseQuality()
         {
             Quality++;
         }
 
-        public void ResetQuality()
+        protected void ResetQuality()
         {
             Quality = 0;
         }
 
-        public void ReduceSellIn()
+        protected void ReduceSellIn()
         {
             SellIn--;
         }
 
-        
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
