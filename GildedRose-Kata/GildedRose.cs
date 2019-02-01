@@ -19,41 +19,27 @@ namespace GildedRose_Kata
         {
             for (var i = 0; i < _items.Count; i++)
             {
-                if (_items[i].Name != AgedBrieItemName && _items[i].Name != BackstageItemName)
+                if (_items[i].Name == BackstageItemName && _items[i].Quality < 50)
                 {
-                    if (_items[i].Quality > 0)
-                    {
-                        if (_items[i].Name != SulfurasItemName)
-                        {
-                            _items[i].ReduceQuality();
-                        }
-                    }
-                }
-                else
-                {
-                    if (_items[i].Quality < 50)
+                    _items[i].RaiseQuality();
+
+                    if (_items[i].SellIn < 11)
                     {
                         _items[i].RaiseQuality();
-
-                        if (_items[i].Name == BackstageItemName)
-                        {
-                            if (_items[i].SellIn < 11)
-                            {
-                                if (_items[i].Quality < 50)
-                                {
-                                    _items[i].RaiseQuality();
-                                }
-                            }
-
-                            if (_items[i].SellIn < 6)
-                            {
-                                if (_items[i].Quality < 50)
-                                {
-                                    _items[i].RaiseQuality();
-                                }
-                            }
-                        }
                     }
+
+                    if (_items[i].SellIn < 6)
+                    {
+                        _items[i].RaiseQuality();
+                    }
+                }
+                else if (_items[i].Name == AgedBrieItemName && _items[i].Quality < 50)
+                {
+                    _items[i].RaiseQuality();
+                }
+                else if (_items[i].Quality > 0 && _items[i].Name != SulfurasItemName)
+                {
+                    _items[i].ReduceQuality();
                 }
 
                 if (_items[i].Name != SulfurasItemName)
@@ -63,35 +49,23 @@ namespace GildedRose_Kata
 
                 if (_items[i].SellIn < 0)
                 {
-                    if (_items[i].Name != AgedBrieItemName)
+                    if (_items[i].Name == AgedBrieItemName && _items[i].Quality < 50)
                     {
-                        if (_items[i].Name != BackstageItemName)
+                        _items[i].RaiseQuality();
+                    }
+                    else
+                    {
+                        if (_items[i].Name != BackstageItemName && _items[i].Quality > 0 && _items[i].Name != SulfurasItemName)
                         {
-                            if (_items[i].Quality > 0)
-                            {
-                                if (_items[i].Name != SulfurasItemName)
-                                {
-                                    _items[i].ReduceQuality();
-                                }
-                            }
+                            _items[i].ReduceQuality();
                         }
                         else
                         {
                             _items[i].ResetQuality();
                         }
                     }
-                    else
-                    {
-                        if (_items[i].Quality < 50)
-                        {
-                            _items[i].RaiseQuality();
-                        }
-                    }
                 }
             }
         }
-
     }
-
-    
 }
