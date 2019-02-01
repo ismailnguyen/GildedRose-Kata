@@ -1,60 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace GildedRose_Kata
+﻿namespace GildedRose_Kata
 {
     public class GildedRose
     {
-        private readonly IList<Item> _items;
+        private readonly Item _item;
 
         private const string SulfurasItemName = "Sulfuras, Hand of Ragnaros";
         private const string BackstageItemName = "Backstage passes to a TAFKAL80ETC concert";
         private const string AgedBrieItemName = "Aged Brie";
 
-        public GildedRose(IList<Item> items)
+        public GildedRose(Item item)
         {
-            _items = items;
+            _item = item;
         }
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < _items.Count; i++)
+            if (_item.Name == BackstageItemName)
             {
-                if (_items[i].Name == BackstageItemName)
-                {
-                    UpdateQualityBackstage(_items[i]);
-                }
-                else if (_items[i].Name == AgedBrieItemName)
-                {
-                    UpdateQualityAgedBrie(_items[i]);
-                }
-                else if (_items[i].Quality > 0 && _items[i].Name != SulfurasItemName)
-                {
-                    _items[i].ReduceQuality();
-                }
+                UpdateQualityBackstage(_item);
+            }
+            else if (_item.Name == AgedBrieItemName)
+            {
+                UpdateQualityAgedBrie(_item);
+            }
+            else if (_item.Quality > 0 && _item.Name != SulfurasItemName)
+            {
+                _item.ReduceQuality();
+            }
 
-                if (_items[i].Name != SulfurasItemName)
-                {
-                    _items[i].ReduceSellIn();
-                }
+            if (_item.Name != SulfurasItemName)
+            {
+                _item.ReduceSellIn();
+            }
 
-                if (_items[i].SellIn < 0)
+            if (_item.SellIn < 0)
+            {
+                if (_item.Name == AgedBrieItemName)
                 {
-                    if (_items[i].Name == AgedBrieItemName)
+                    if (_item.Quality < 50 && _item.SellIn < 0)
+                        _item.RaiseQuality();
+                }
+                else
+                {
+                    if (_item.Name != BackstageItemName && _item.Quality > 0 && _item.Name != SulfurasItemName)
                     {
-                        if (_items[i].Quality < 50 && _items[i].SellIn < 0)
-                        _items[i].RaiseQuality();
+                        _item.ReduceQuality();
                     }
                     else
                     {
-                        if (_items[i].Name != BackstageItemName && _items[i].Quality > 0 && _items[i].Name != SulfurasItemName)
-                        {
-                            _items[i].ReduceQuality();
-                        }
-                        else
-                        {
-                            _items[i].ResetQuality();
-                        }
+                        _item.ResetQuality();
                     }
                 }
             }

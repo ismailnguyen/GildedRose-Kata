@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GildedRose_Kata
+﻿namespace GildedRose_Kata
 {
     public class Item
     {

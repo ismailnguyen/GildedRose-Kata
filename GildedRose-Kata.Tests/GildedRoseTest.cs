@@ -1,6 +1,5 @@
 ﻿using NFluent;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace GildedRose_Kata.Tests
 {
@@ -19,7 +18,7 @@ namespace GildedRose_Kata.Tests
             // GIVEN
             var item = new Item(name, sellIn, quality);
 
-            var gildedRose = new GildedRose(new List<Item> { item });
+            var gildedRose = new GildedRose(item);
 
             // WHEN
             gildedRose.UpdateQuality();
