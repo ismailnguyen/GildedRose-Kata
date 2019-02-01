@@ -1,4 +1,6 @@
-﻿namespace GildedRose_Kata
+﻿using System;
+
+namespace GildedRose_Kata
 {
     public class Item
     {
@@ -13,6 +15,21 @@
             Name = name;
             SellIn = sellIn;
             Quality = quality;
+        }
+
+        public void UpdateQuality()
+        {
+            if (Quality > 0)
+            {
+                ReduceQuality();
+            }
+
+            ReduceSellIn();
+
+            if (SellIn < 0)
+            {
+                ReduceQuality();
+            }
         }
 
         public void ReduceQuality()
@@ -34,5 +51,7 @@
         {
             SellIn--;
         }
+
+        
     }
 }

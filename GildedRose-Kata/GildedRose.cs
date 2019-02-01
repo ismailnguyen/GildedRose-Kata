@@ -4,7 +4,6 @@
     {
         private readonly Item _item;
 
-        private const string SulfurasItemName = "Sulfuras, Hand of Ragnaros";
         private const string BackstageItemName = "Backstage passes to a TAFKAL80ETC concert";
         private const string AgedBrieItemName = "Aged Brie";
 
@@ -24,23 +23,8 @@
                     UpdateAgedBrieQuality();
                     break;
                 default:
-                    UpdateNormalItemQuality();
+                    _item.UpdateQuality();
                     break;
-            }
-        }
-
-        private void UpdateNormalItemQuality()
-        {
-            if (_item.Quality > 0)
-            {
-                _item.ReduceQuality();
-            }
-
-            _item.ReduceSellIn();
-
-            if (_item.SellIn < 0)
-            {
-                _item.ReduceQuality();
             }
         }
 
