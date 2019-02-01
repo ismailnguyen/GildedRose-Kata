@@ -17,17 +17,12 @@ namespace GildedRose_Kata.Tests
         public void Should(string name, int sellIn, int quality, int expectedSellIn, int expectedQuality)
         {
             // GIVEN
-            Item item = new Item
-            {
-                Name = name,
-                SellIn = sellIn,
-                Quality = quality
-            };
+            var item = new Item(name, sellIn, quality);
 
-            GildedRose app = new GildedRose(new List<Item> { item });
+            var gildedRose = new GildedRose(new List<Item> { item });
 
             // WHEN
-            app.UpdateQuality();
+            gildedRose.UpdateQuality();
 
             // THEN
             Check.That(item.SellIn).IsEqualTo(expectedSellIn);

@@ -25,7 +25,7 @@ namespace GildedRose_Kata
                     {
                         if (_items[i].Name != SulfurasItemName)
                         {
-                            _items[i].Quality--;
+                            _items[i].ReduceQuality();
                         }
                     }
                 }
@@ -33,7 +33,7 @@ namespace GildedRose_Kata
                 {
                     if (_items[i].Quality < 50)
                     {
-                        _items[i].Quality++;
+                        _items[i].RaiseQuality();
 
                         if (_items[i].Name == BackstageItemName)
                         {
@@ -41,7 +41,7 @@ namespace GildedRose_Kata
                             {
                                 if (_items[i].Quality < 50)
                                 {
-                                    _items[i].Quality++;
+                                    _items[i].RaiseQuality();
                                 }
                             }
 
@@ -49,7 +49,7 @@ namespace GildedRose_Kata
                             {
                                 if (_items[i].Quality < 50)
                                 {
-                                    _items[i].Quality++;
+                                    _items[i].RaiseQuality();
                                 }
                             }
                         }
@@ -58,7 +58,7 @@ namespace GildedRose_Kata
 
                 if (_items[i].Name != SulfurasItemName)
                 {
-                    _items[i].SellIn--;
+                    _items[i].ReduceSellIn();
                 }
 
                 if (_items[i].SellIn < 0)
@@ -71,20 +71,20 @@ namespace GildedRose_Kata
                             {
                                 if (_items[i].Name != SulfurasItemName)
                                 {
-                                    _items[i].Quality--;
+                                    _items[i].ReduceQuality();
                                 }
                             }
                         }
                         else
                         {
-                            _items[i].Quality = 0;
+                            _items[i].ResetQuality();
                         }
                     }
                     else
                     {
                         if (_items[i].Quality < 50)
                         {
-                            _items[i].Quality++;
+                            _items[i].RaiseQuality();
                         }
                     }
                 }
