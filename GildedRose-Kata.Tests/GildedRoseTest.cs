@@ -22,6 +22,23 @@ namespace GildedRose_Kata.Tests
             Check.That(resultItem.Quality).IsEqualTo(expectedQuality);
         }
 
+        [TestCase(10, 17, 9, 15)]
+        [TestCase(-2, 23, -3, 19)]
+        public void Should_Update_Quality_Of_Conjured_Item(int sellIn, int quality, int expectedSellIn, int expectedQuality)
+        {
+            // GIVEN
+            var conjuredItem = new ConjuredItem(sellIn, quality);
+
+            var gildedRose = new GildedRose(conjuredItem);
+
+            // WHEN
+            var resultConjuredItem = gildedRose.UpdateQuality();
+
+            // THEN
+            Check.That(resultConjuredItem.SellIn).IsEqualTo(expectedSellIn);
+            Check.That(resultConjuredItem.Quality).IsEqualTo(expectedQuality);
+        }
+
         [TestCase(23, 21, 22, 22)]
         [TestCase(-1, 17, -2, 19)]
         public void Should_Update_Quality_Of_Aged_Brie_Item(int sellIn, int quality, int expectedSellIn, int expectedQuality)
